@@ -23,9 +23,11 @@ export default function App() {
       <AppLoading 
         startAsync={fetchFonts} 
         onFinish={() => {setFontLoaded(true)}} 
+        onError={(err) => console.log(err)}
       />
-    )
+    );
   }
+  
   return <MealsNavigator />
 }
 

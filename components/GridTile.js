@@ -34,10 +34,10 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'flex-end'
     },
-    title: {
-        fontFamily: 'open-sans-bold',
-        fontSize: 20
-    }
+    // title: {
+    //     fontFamily: 'open-sans-bold',
+    //     fontSize: 20
+    // }
 });
 
 //make this component available to the app

@@ -7,7 +7,7 @@ import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
 
 import Colors from '../constants/Colors';
-import { CATEGORIES } from '../data/dummy-data';
+import { CATEGORIES, MEALS } from '../data/dummy-data';
 
 const MealsNavigator = createStackNavigator({
     Categories: {
@@ -37,6 +37,15 @@ CategoryMealsScreen.navigationOptions = (navigationData) => {
 
     return {
         headerTitle: selectedCategory.title,
+    }
+}
+
+MealDetailScreen.navigationOptions = (navigationData) => {
+    const mealId = navigationData.navigation.getParam('mealId');
+    const selectedMeal = MEALS.find(meal => meal.id === mealId);
+
+    return {
+        headerTitle: selectedMeal.title,
     }
 }
 

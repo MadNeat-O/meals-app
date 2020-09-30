@@ -3,10 +3,12 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Platform, Text } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
+import FavoritesScreen from '../screens/FavoritesScreen';
 
 import Colors from '../constants/Colors';
 import { CATEGORIES, MEALS } from '../data/dummy-data';
@@ -49,7 +51,7 @@ MealDetailScreen.navigationOptions = (navigationData) => {
 
     return {
         headerTitle: selectedMeal.title,
-        headerRight: 
+        headerRight: () => 
             <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
                 <Item 
                     title='FAV'
@@ -62,4 +64,9 @@ MealDetailScreen.navigationOptions = (navigationData) => {
     }
 }
 
-export default createAppContainer(MealsNavigator);
+const MealsFavTabNav = createBottomTabNavigator({
+    Meals: MealsNavigator,
+    Favorites: FavoritesScreen
+});
+
+export default createAppContainer(MealsFavTabNav);

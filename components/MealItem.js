@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.5)',
     },
     title: {
-        //  fontFamily: 'open-sans-bold',
+        fontFamily: 'open-sans-bold',
         fontSize: 20,
         color: 'white',
         padding: 5,

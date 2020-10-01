@@ -67,6 +67,10 @@ MealDetailScreen.navigationOptions = (navigationData) => {
 const MealsFavTabNav = createBottomTabNavigator({
     Meals: MealsNavigator,
     Favorites: FavoritesScreen
+}, {
+    tabBarOptions: {
+        activeTintColor: Colors.primary
+    }
 });
 
 export default createAppContainer(MealsFavTabNav);

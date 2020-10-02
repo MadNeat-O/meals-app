@@ -1,9 +1,10 @@
-import React, { PropTypes, Component } from 'react';
+import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Platform, Text } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { Ionicons } from '@expo/vector-icons';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
@@ -65,8 +66,30 @@ MealDetailScreen.navigationOptions = (navigationData) => {
 }
 
 const MealsFavTabNav = createBottomTabNavigator({
-    Meals: MealsNavigator,
-    Favorites: FavoritesScreen
+    Meals: { 
+        screen: MealsNavigator, 
+        navigationOptions: {
+            tabBarIcon: (tabInfo) => {
+                return (
+                    <Ionicons 
+                        name='ios-restaurant'
+                        size={25}
+                        color={tabInfo.tintColor}
+                    />)
+            }
+        }},
+    Favorites: { 
+        screen: FavoritesScreen, 
+        navigationOptions: {
+            tabBarIcon: (tabInfo) => {
+                return (
+                    <Ionicons 
+                        name='ios-star'
+                        size={25}
+                        color={tabInfo.tintColor}
+                    />)
+            }
+        }},
 }, {
     tabBarOptions: {
         activeTintColor: Colors.primary

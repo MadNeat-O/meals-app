@@ -15,6 +15,17 @@ import Colors from '../constants/Colors';
 import { CATEGORIES, MEALS } from '../data/dummy-data';
 import CustomHeaderButton from '../components/CustomHeaderButton';
 
+const defaultStackNavOptions = {
+    defaultNavigationOptions: {
+        headerStyle: {
+            backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
+        },
+        headerTitleStyle: {
+            color: Platform.OS === 'android' ? '' : Colors.primary
+        }
+    }
+}
+
 const MealsNavigator = createStackNavigator({
     Categories: {
         screen: CategoriesScreen,
@@ -26,16 +37,8 @@ const MealsNavigator = createStackNavigator({
         screen: CategoryMealsScreen,
     },
     MealDetail: MealDetailScreen
-}, {
-    defaultNavigationOptions: {
-        headerStyle: {
-            backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
-        },
-        headerTitleStyle: {
-            color: Platform.OS === 'android' ? '' : Colors.primary
-        }
-    }
-});
+}, defaultStackNavOptions
+);
 
 CategoryMealsScreen.navigationOptions = (navigationData) => {
     const catId = navigationData.navigation.getParam('categoryId');
@@ -65,6 +68,11 @@ MealDetailScreen.navigationOptions = (navigationData) => {
     }
 }
 
+const FavNav = createStackNavigator({
+    Favorites: FavoritesScreen,
+    MealDetail: MealDetailScreen
+}, defaultStackNavOptions);
+
 const MealsFavTabNav = createBottomTabNavigator({
     Meals: { 
         screen: MealsNavigator, 
@@ -79,7 +87,7 @@ const MealsFavTabNav = createBottomTabNavigator({
             }
         }},
     Favorites: { 
-        screen: FavoritesScreen, 
+        screen: FavNav, 
         navigationOptions: {
             tabBarIcon: (tabInfo) => {
                 return (

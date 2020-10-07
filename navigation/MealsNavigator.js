@@ -11,6 +11,7 @@ import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
+import FilterScreen from '../screens/FiltersScreen'
 
 import Colors from '../constants/Colors';
 import { CATEGORIES, MEALS } from '../data/dummy-data';
@@ -31,7 +32,7 @@ const MealsNavigator = createStackNavigator({
     Categories: {
         screen: CategoriesScreen,
         navigationOptions: {
-            headerTitle: 'Categories',
+            headerTitle: 'Categories', 
         }
     },
     CategoryMeals: {
@@ -40,6 +41,30 @@ const MealsNavigator = createStackNavigator({
     MealDetail: MealDetailScreen
 }, defaultStackNavOptions
 );
+
+CategoriesScreen.navigationOptions = (navigationData) => {
+    return {
+        headerLeft: 
+                <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                    <Item 
+                        title="Menu" 
+                        iconName='ios-menu' 
+                        onPress={() => {navigationData.navigation.toggleDrawer()}} />
+                </HeaderButtons>
+    }
+}
+
+FavoritesScreen.navigationOptions = (navigationData) => {
+    return {
+        headerLeft: 
+                <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                    <Item 
+                        title="Menu" 
+                        iconName='ios-menu' 
+                        onPress={() => {navigationData.navigation.toggleDrawer()}} />
+                </HeaderButtons>
+    }
+}
 
 CategoryMealsScreen.navigationOptions = (navigationData) => {
     const catId = navigationData.navigation.getParam('categoryId');
@@ -105,4 +130,18 @@ const MealsFavTabNav = createBottomTabNavigator({
     }
 });
 
-export default createAppContainer(MealsFavTabNav);
+const FiltersNav = createStackNavigator({
+    Filters: {
+        screen: FilterScreen,
+        navigationOptions: {
+            headerTitle: 'Categories',
+        }
+    }
+})
+
+const MainNav = createDrawerNavigator({
+    MealsFavs: MealsFavTabNav,
+    Filters: FiltersNav  
+})
+
+export default createAppContainer(MainNav);

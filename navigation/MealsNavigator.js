@@ -66,6 +66,18 @@ FavoritesScreen.navigationOptions = (navigationData) => {
     }
 }
 
+FilterScreen.navigationOptions = (navigationData) => {
+    return {
+        headerLeft: 
+                <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                    <Item 
+                        title="Menu" 
+                        iconName='ios-menu' 
+                        onPress={() => {navigationData.navigation.toggleDrawer()}} />
+                </HeaderButtons>
+    }
+}
+
 CategoryMealsScreen.navigationOptions = (navigationData) => {
     const catId = navigationData.navigation.getParam('categoryId');
     const selectedCategory = CATEGORIES.find(cat => cat.id === catId);

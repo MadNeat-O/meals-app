@@ -44,7 +44,7 @@ const MealsNavigator = createStackNavigator({
 
 CategoriesScreen.navigationOptions = (navigationData) => {
     return {
-        headerLeft: 
+        headerLeft: () => 
                 <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
                     <Item 
                         title="Menu" 
@@ -56,7 +56,7 @@ CategoriesScreen.navigationOptions = (navigationData) => {
 
 FavoritesScreen.navigationOptions = (navigationData) => {
     return {
-        headerLeft: 
+        headerLeft: () =>
                 <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
                     <Item 
                         title="Menu" 
@@ -68,7 +68,7 @@ FavoritesScreen.navigationOptions = (navigationData) => {
 
 FilterScreen.navigationOptions = (navigationData) => {
     return {
-        headerLeft: 
+        headerLeft: () =>
                 <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
                     <Item 
                         title="Menu" 
@@ -149,11 +149,23 @@ const FiltersNav = createStackNavigator({
             headerTitle: 'Categories',
         }
     }
-})
+}, defaultStackNavOptions)
 
 const MainNav = createDrawerNavigator({
-    MealsFavs: MealsFavTabNav,
+    MealsFavs: {
+        screen: MealsFavTabNav,
+        navigationOptions: {
+            drawerLabel: 'Meals'
+        }
+    },
     Filters: FiltersNav  
+}, {
+    contentOptions: {
+        activeTintColor: Colors.highlight,
+        labelStyle: {
+            fontFamily: 'open-sans-bold'
+        }
+    }
 })
 
 export default createAppContainer(MainNav);

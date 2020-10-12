@@ -23,7 +23,11 @@ const defaultStackNavOptions = {
             backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
         },
         headerTitleStyle: {
-            color: Platform.OS === 'android' ? '' : Colors.primary
+            color: Platform.OS === 'android' ? '' : Colors.primary,
+            fontFamily: 'open-sans-bold'
+        },
+        headerBackTitleStyle: {
+            fontFamily: 'open-sans'
         }
     }
 }

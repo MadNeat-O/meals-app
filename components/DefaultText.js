@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 // create a component
 const DefaultText = (props) => {
-    return <Text style={styles.text}>props.children</Text>
+    return <Text style={styles.text}>{props.children}</Text>
 };
 
 // define your styles

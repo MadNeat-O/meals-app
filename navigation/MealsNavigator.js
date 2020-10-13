@@ -73,12 +73,19 @@ FavoritesScreen.navigationOptions = (navigationData) => {
 FilterScreen.navigationOptions = (navigationData) => {
     return {
         headerLeft: () =>
-                <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-                    <Item 
-                        title="Menu" 
-                        iconName='ios-menu' 
-                        onPress={() => {navigationData.navigation.toggleDrawer()}} />
-                </HeaderButtons>
+            <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                <Item 
+                    title="Menu" 
+                    iconName='ios-menu' 
+                    onPress={() => {navigationData.navigation.toggleDrawer()}} />
+            </HeaderButtons>,
+        headerRight: () =>
+            <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                <Item 
+                    title="Menu" 
+                    iconName='ios-save' 
+                    onPress={navigationData.navigation.getParam('save')} />
+            </HeaderButtons>
     }
 }
 

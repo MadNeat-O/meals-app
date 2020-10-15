@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, Text } from 'react-native';
+import { Platform } from 'react-native';
 import { createAppContainer,  } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
@@ -14,7 +14,7 @@ import FavoritesScreen from '../screens/FavoritesScreen';
 import FilterScreen from '../screens/FiltersScreen'
 
 import Colors from '../constants/Colors';
-import { CATEGORIES, MEALS } from '../data/dummy-data';
+import { CATEGORIES } from '../data/dummy-data';
 import CustomHeaderButton from '../components/CustomHeaderButton';
 
 const defaultStackNavOptions = {
@@ -99,8 +99,9 @@ CategoryMealsScreen.navigationOptions = (navigationData) => {
 }
 
 MealDetailScreen.navigationOptions = (navigationData) => {
-    const mealId = navigationData.navigation.getParam('mealId');
-    const mealTitle = navigationData.navigation.getParam('mealTitle')
+    const mealTitle = navigationData.navigation.getParam('mealTitle');
+    const toggleFavorite = navigationData.navigation.getParam('toggleFav');
+    const isFav = navigationData.navigation.getParam('isFav');
 
     return {
         headerTitle: mealTitle,
@@ -108,10 +109,8 @@ MealDetailScreen.navigationOptions = (navigationData) => {
             <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
                 <Item 
                     title='FAV'
-                    iconName='ios-star'
-                    onPress={() => {
-                        console.log('works?');
-                    }}
+                    iconName={isFav ? 'ios-star' : 'ios-star-outline'}
+                    onPress={toggleFavorite}
                 />
             </HeaderButtons>
     }

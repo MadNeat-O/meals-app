@@ -1,5 +1,5 @@
 //import libraries
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import { useSelector } from 'react-redux';
 
@@ -18,7 +18,7 @@ const MealDetailScreen = (props) => {
     const availableMeals = useSelector(state => state.meals.meals)
     const mealId = props.navigation.getParam('mealId');
     const selectedMeal = availableMeals.find(meal => meal.id === mealId);
-    
+
     return(
         <ScrollView>
             <Image source={{uri: selectedMeal.imageUrl}} style={styles.image} />

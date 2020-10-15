@@ -100,10 +100,10 @@ CategoryMealsScreen.navigationOptions = (navigationData) => {
 
 MealDetailScreen.navigationOptions = (navigationData) => {
     const mealId = navigationData.navigation.getParam('mealId');
-    const selectedMeal = MEALS.find(meal => meal.id === mealId);
+    const mealTitle = navigationData.navigation.getParam('mealTitle')
 
     return {
-        headerTitle: selectedMeal.title,
+        headerTitle: mealTitle,
         headerRight: () => 
             <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
                 <Item 
